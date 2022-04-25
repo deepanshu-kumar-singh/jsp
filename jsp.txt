@@ -1,0 +1,218 @@
+JSP Out
+
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"    pageEncoding="ISO-8859-1"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Jsp Out example</title>
+</head>
+<body>
+<% int var1=10;int var2=20;
+out.println("var1 is: " +var1);
+out.println("var2 is: " +var2); 
+int c = var1 + var2;
+out.println("Total of " + var1 + " and " + var2 + " is: " + c);
+%>
+</body>
+</html>
+
+===========================================================================
+JSP Request
+
+<%@ page language="java" contentType="text/html"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html;">
+<title>Request Object Example</title>
+</head>
+<body>
+<form action="Login.jsp">
+<input type="text" name="username">
+<input type="submit" value="submit">
+</form>
+</body>
+</html>
+
+<%@ page language="java" contentType="text/html"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html;"><title>Request Object Form</title>
+</head>
+<body>
+<% String username=request.getParameter("username");
+out.println("Welcome "+username);
+%>
+</form>
+</body>
+</html>
+
+===========================================================================
+JSP Response
+
+<%@ page language="java" contentType="text/html"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html;">
+<title>Response object Example</title>
+</head>
+<body>
+<%response.setContentType("text/html"); %>
+</body>
+</html>
+
+===========================================================================
+JSP Config
+
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd" id="WebApp_ID" version="3.1">
+  <display-name>ConfigExample</display-name>
+  <servlet>
+  <description></description>
+  <display-name>Config</display-name>
+  <servlet-name>Config</servlet-name>
+  <servlet-class>test.Config</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  <servlet-name>Config</servlet-name>
+  <url-pattern>/Config</url-pattern>
+  </servlet-mapping>
+  <welcome-file-list>
+    <welcome-file>index.html</welcome-file>
+    <welcome-file>index.htm</welcome-file>
+    <welcome-file>index.jsp</welcome-file>
+    <welcome-file>default.html</welcome-file>
+    <welcome-file>default.htm</welcome-file>
+    <welcome-file>Config.jsp</welcome-file>
+  </welcome-file-list>
+</web-app>
+
+<%@ page language="java" contentType="text/html;"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html;">
+<title>Config Object Example</title>
+</head>
+<body>
+<% String servletName = config.getServletName();
+out.println("Servlet Name is " + servletName);%>
+</body>
+</html>
+
+===========================================================================
+JSP Application
+
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"    pageEncoding="ISO-8859-1"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Application Object Example</title>
+</head>
+<body>
+<% out.println(application.getContextPath()); %>
+</body>
+</html>
+
+===========================================================================
+JSP Session
+
+<%@ page language="java" contentType="text/html;"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html;">
+<title>JSP session object</title>
+</head>
+<body>
+<% session.setAttribute("user","Adarsh"); %>
+<a href="form2.jsp">Click here to get user name</a>
+</body>
+</html>
+
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Session Object Example</title>
+</head>
+<body>
+<% String name = (String)session.getAttribute("user");
+out.println("User Name is " +name);
+%>
+</body>
+</html>
+
+===========================================================================
+JSP Page Context
+
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>PageContextExample</title>
+</head>
+<body>
+<% pageContext.setAttribute("course","JSP",pageContext.PAGE_SCOPE);
+String name = (String)pageContext.getAttribute("course");
+out.println("Course name is " +name);%>
+</body>
+</html>
+
+===========================================================================
+JSP Exception
+
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1" isErrorPage="true"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Exception Example</title>
+</head>
+<body>
+<%int x=5,y=0;
+out.println(x/y);%>
+<%= exception %>
+</body>
+</html>
+
+===========================================================================
+Table
+
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Table</title>
+</head>
+<body>
+<h1>Table</h1>
+<table>
+<% int a = 5;int result = 0;
+for(int i = 1; i<=10; i++){
+	result = a*i;
+	%>
+	<tr>
+		<td><%= a %></td>
+		<td>*</td>
+		<td><%= i %></td>
+		<td>=</td>
+		<td><%= result %></td>	
+	</tr>
+	<% 
+} %>
+</table>
+
+</body>
+</html>
